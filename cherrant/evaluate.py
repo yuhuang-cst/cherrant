@@ -149,7 +149,7 @@ class Evaluator(object):
             p, r, f = computeFScore(tp, fp, fn, beta)
             ret_dict['precision'] = p
             ret_dict['recall'] = r
-            ret_dict[f'f{beta}'] = f
+            ret_dict[f'f{beta}-score'] = f
         return ret_dict
 
 
