@@ -27,9 +27,9 @@ class Evaluator(object):
 
     @staticmethod
     def get_default_m2_convert_kwargs():
-        from cherrant.parallel_to_m2 import parse_args
-        args = parse_args()
-        return vars(args)
+        from cherrant.parallel_to_m2 import get_parser
+        parser = get_parser()
+        return {a.dest: a.default for a in parser._actions if a.dest != 'help'}
 
 
     def check_m2_convert_kwargs(self, kwargs):
@@ -43,9 +43,9 @@ class Evaluator(object):
 
     @staticmethod
     def get_default_m2_compare_kwargs():
-        from cherrant.compare_m2_for_evaluation import parse_args
-        args = parse_args()
-        return vars(args)
+        from cherrant.compare_m2_for_evaluation import get_parser
+        parser = get_parser()
+        return {a.dest: a.default for a in parser._actions if a.dest != 'help'}
 
 
     def check_m2_compare_kwargs(self, kwargs):

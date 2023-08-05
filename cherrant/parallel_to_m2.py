@@ -98,7 +98,7 @@ def main(args):
         #             f.write(ret)
         #             f.write("\n")
 
-def parse_args():
+def get_parser():
     parser = argparse.ArgumentParser(description="Choose input file to annotate")
     parser.add_argument("-f", "--file", type=str, required=False, help="Input parallel file")
     parser.add_argument("-o", "--output", type=str, help="Output file", required=False)
@@ -111,8 +111,9 @@ def parse_args():
     parser.add_argument("--segmented", help="Whether tokens have been segmented", action="store_true")  # 支持提前token化，用空格隔开
     parser.add_argument("--no_simplified", help="Whether simplifying chinese", action="store_true")  # 将所有corrections转换为简体中文
     parser.add_argument("--bpe", help="Whether to use bpe", action="store_true")  # 支持 bpe 切分英文单词
-    return parser.parse_args()
+    return parser
 
 if __name__ == "__main__":
-    args = parse_args()
+    parser = get_parser()
+    args = parser.parse_args()
     main(args)

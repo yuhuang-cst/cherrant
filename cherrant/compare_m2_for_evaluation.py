@@ -3,7 +3,7 @@ from collections import Counter
 
 def main():
     # Parse command line args
-    args = parse_args()
+    args = get_parser().parse_args()
     ref_m2 = open(args.ref).read().strip().split("\n\n")
     hyp_m2 = open(args.hyp).read().strip().split("\n\n")
 
@@ -49,7 +49,7 @@ def calculate_metric(ref_m2, hyp_m2, args):
 
 
 # Parse command line args
-def parse_args():
+def get_parser():
     parser = argparse.ArgumentParser(
         description="Calculate F-scores for error detection and/or correction.\n"
             "Flags let you evaluate at different levels of granularity.",
@@ -140,8 +140,8 @@ def parse_args():
             "3: Show all category scores; e.g. R:NOUN.",
         choices=[1, 2, 3],
         type=int)
-    args = parser.parse_args()
-    return args
+    return parser
+
 
 # Input: An m2 format sentence with edits.
 # Output: A list of lists. Each edit: [start, end, cat, cor, coder]
